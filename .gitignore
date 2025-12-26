@@ -1,2 +1,5 @@
 config.py
 .lesson_16_env
+task.txt
+__pycache__
+.idea
