@@ -1,0 +1,45 @@
+Title: Automated Emails
+
+Description: An app that reads user names, email addresses,
+and interests from an Excel file and sends an email to each user
+with news feeds about the user's interest every morning.
+
+Програма, яка зчитує імена користувачів, адреси електронної
+пошти та інтереси з файлу Excel і надсилає електронного листа кожному користувачеві
+зі стрічками новин про інтерес користувача щоранку.
+
+Objects: ExcelFile: - імпортуємо (не сворюємо самостійно)
+            filepath
+            get_data()
+
+         Email: - імпортуємо (не сворюємо самостійно)
+            sender
+            receiver
+            subject
+            body
+            send()
+
+        NewsFeed:
+            data
+            get()
+
+
+
+
+Email context
+
+Hi [Ivanna]
+
+That is news for you for today about Python.
+
+[Title article]
+[URL]
+
+[Title article]
+[URL]
+
+[Title article]
+[URL]
+
+[Title article]
+[URL article]
