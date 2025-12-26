@@ -26,21 +26,17 @@ class NewsFeed:
         )
 
         responce = requests.get(url)
-        # print(responce, "\n\n")
+        if responce.status_code != 200 or 'articles' not in responce.json().keys():
+            return f'<h3>Unfortunately, an error occurred.</h3>\n<span style="color: red">Code: {responce.status_code}.</span>\n\n\n <b>You can contact our developer team: <a href="mailto:bogdan.artvas@gmail.com">bogdan.artvas@gmail.com</a></b>'
         content_dict = responce.json()
         articles = content_dict["articles"]
 
         email_body = ""
-        for article_dict in articles:
-            email_body = email_body + article_dict["title"] + "\n" + article_dict["url"] + "\n"*2
+
+        if len(articles) == 0:
+            email_body = f"Unfortunately, no fresh news was found on the topic {self.interests} in the last 24 hours."
+        else:
+            for article_dict in articles:
+                email_body = email_body + f"<a href='{article_dict["url"]}'> {article_dict['title']}</a>\n\n"
 
         return email_body
-
-
-if "__main__" == __name__:
-    new_feed = NewsFeed(interests="yoga", from_date="2025-12-04", to_date="2025-12-05", language="en")
-    # print(new_feed.base_url)
-    # print(new_feed.search_in)
-    # print(new_feed.api_url)
-    # print(new_feed.language)
-    print(new_feed.get_news())
